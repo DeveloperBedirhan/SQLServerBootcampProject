@@ -1,5 +1,3 @@
-﻿-- deneme
-
 USE northwind
 SELECT CategoryId,CategoryName FROM Categories WHERE CategoryID >= 3 AND CategoryName='Produce'
 SELECT * FROM Categories WHERE CategoryID > 3 AND CategoryID < 5
@@ -108,7 +106,6 @@ JOIN Orders O ON E.EmployeeID = O.EmployeeID
 JOIN [Order Details] OD ON O.OrderID = OD.OrderID
 GROUP BY E.EmployeeID, E.FirstName, E.LastName
 ORDER BY TotalProductsSold DESC
---LIMIT 1;
 
 
 SELECT ordDet.OrderID,COUNT(ordDet.OrderID)*ordDet.Quantity,emp.EmployeeID,COUNT(ord.EmployeeID) as[Satış Miktarı]
@@ -157,25 +154,11 @@ JOIN Orders O ON E.EmployeeID = O.EmployeeID
 GROUP BY E.EmployeeID, E.FirstName, E.LastName
 
 
-/*SELECT ord.EmployeeID,,COUNT(CustomerID) as [Total Customer] FROM Orders ord
-JOIN Employees emp ON ord.EmployeeID=emp.EmployeeID
-GROUP BY ord.EmployeeID,CustomerID*/
-
 -- 23. Hiç siparişi olmayan müşterileri listeleyin.
 SELECT C.CustomerID, C.CompanyName
 FROM Customers C
 LEFT JOIN Orders O ON C.CustomerID = O.CustomerID
 WHERE O.OrderID IS NULL;
-
-/*SELECT 
-    C.CustomerID,
-	C.CompanyName, 
-    COUNT(O.OrderID) AS [Toplam Sipariş]
-FROM Customers C
-FULL OUTER JOIN Orders O ON C.CustomerID = O.CustomerID
-FULL OUTER JOIN [Order Details] OD ON O.OrderID = OD.OrderID
-WHERE [Toplam Sipariş]=0
-GROUP BY C.CustomerID,C.CompanyName*/
 
 
 -- 24. Siparişlerin Nakliye (Freight) Maliyeti Analizi: Nakliye maliyetine göre en pahalı 5 siparişi listeleyin.
